@@ -5,7 +5,7 @@
   <artifactId>mvndz</artifactId>
   <packaging>jar</packaging>
   <version>1.0.1-SNAPSHOT</version>
-  <name>mvndz</name>
+
 
   <url>http://maven.apache.org</url>
   <build>

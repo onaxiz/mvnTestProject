@@ -40,7 +40,7 @@ public class K01 {
 
         System.out.println("=======================================");
 
-        List<Integer> list2 = Arrays.asList(3,2,1,0,11,12,13,14);
+        List<Integer> list2 = Arrays.asList(3, 2, 1, 0, 11, 12, 13, 14);
         List<Integer> list3 = Stream.of(12, 21, 21, 30, 511, 612, 713, 814, 978, 15)
                 .collect(Collectors.toList());
 
@@ -102,7 +102,7 @@ public class K01 {
         ArrayList<String> strings = new ArrayList<>();
         Faker faker = new Faker();
 
-        for ( int i = 0; i < 15; i++){
+        for (int i = 0; i < 15; i++) {
             strings.add(faker.artist().name());
         }
 
@@ -125,7 +125,7 @@ public class K01 {
 
         System.out.println("|||||||||||||||||| Set ||||||||||||||");
 
-        Set<Integer> set1 = new HashSet<Integer>(){{
+        Set<Integer> set1 = new HashSet<Integer>() {{
             add(2);
             add(1);
             add(0);
@@ -179,7 +179,7 @@ public class K01 {
 
         List<Integer> ints = new ArrayList<>();
 
-        for (int i = 0; i < 432; i++ )
+        for (int i = 0; i < 432; i++)
             ints.add(faker.random().nextInt(50, 60));
 
         Set<Integer> intsNoDuplicates = new HashSet<>(ints);
@@ -192,7 +192,7 @@ public class K01 {
         Map<Long, String> map = new HashMap<>();
 
         for (int i = 0; i < 72; i++) {
-            final Long key =faker.random().nextLong();
+            final Long key = faker.random().nextLong();
             final String value = faker.weather().description();
 
             map.put(key, value);
@@ -226,13 +226,28 @@ public class K01 {
                 .getValue();
 
         System.out.println("valueIfKeyGt0=" + valueIfKeyGt0);
+        System.out.println("=======================================");
 
-// need some cast, I can not solve it
-//        Set<Integer> setNoDuplicates2 =  ints.stream().distinct();
-//
-//        System.out.println("ints size=" + ints.size());
-//        System.out.println("setNoDuplicates2 size=" + setNoDuplicates2.size());
-//        System.out.println("setNoDuplicates2=" + setNoDuplicates2);
+        // fix this string with .collect(Collectors.toSet())
+        Set<Integer> setNoDuplicates2 = ints.stream()
+                .distinct()
+                .collect(Collectors.toSet());
+
+        System.out.println("ints size=" + ints.size());
+        System.out.println("setNoDuplicates2 size=" + setNoDuplicates2.size());
+        System.out.println("setNoDuplicates2=" + setNoDuplicates2);
+
+        System.out.println("=======================================");
+
+        Set<Integer> setMapped = setNoDuplicates2
+                .stream()
+                .map(e -> 3 * e)
+                .collect(Collectors.toSet());
+
+        System.out.println("setMapped=" + setMapped);
+
+        long count = ints.stream().filter(e -> e.equals(55)).count();
+        System.out.println("ints count ==55 ->" + count);
     }
 
 

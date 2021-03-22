@@ -11,6 +11,7 @@ public class DZ02Streams {
     public static void main(String[] args) {
         Map<Long, User> idToUser = new HashMap<>();
 
+
         setMapData(idToUser);
 
         // if you need see all map
@@ -47,6 +48,52 @@ public class DZ02Streams {
                 .filter(pair -> pair.getValue().getBirthDate() == null)
                 .map(x -> x.getValue().getName())
                 .findFirst();
+
+        // second method
+        List<User> listId = new ArrayList<>();
+        for (Map.Entry<Long,User> pair : idToUser.entrySet()){
+            if(pair.getKey() <= 121){
+                listId.add(pair.getValue());
+            }
+        }
+
+        List<String> listAge = new ArrayList<>();
+        for (Map.Entry<Long,User> pair : idToUser.entrySet()){
+            if(pair.getValue().getAge() > 18){
+                listAge.add(pair.getValue().getSurname());
+            }
+        }
+
+        List<String> listSurname = new ArrayList<>();
+        for (Map.Entry<Long,User> pair : idToUser.entrySet()){
+            if(pair.getValue().getSurname().charAt(0) == 'A'){
+                listSurname.add(pair.getValue().getSurname());
+            }
+        }
+
+        int count = 0;
+        for (Map.Entry<Long,User> pair : idToUser.entrySet()){
+            if(pair.getValue().getName().charAt(0) == 'C'){
+                count++;
+            }
+        }
+
+        List<String> fullName = new ArrayList<>();
+        for (Map.Entry<Long,User> pair : idToUser.entrySet()){
+            StringBuilder sb = new StringBuilder();
+            User user = pair.getValue();
+            sb.append(user.getSurname()).append(" ").append(user.getName()).append(" ").append(user.getPatronim());
+            fullName.add(sb.toString());
+        }
+
+
+        User nullUser = null;
+        for (Map.Entry<Long,User> pair : idToUser.entrySet()){
+            if (pair.getValue().getBirthDate() == null){
+                nullUser = pair.getValue();
+                break;
+            }
+        }
     }
 
     public static void setMapData(Map<Long,User> map){
